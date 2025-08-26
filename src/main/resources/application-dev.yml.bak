@@ -1,0 +1,32 @@
+datasource:
+  names: master,slave
+  master:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3310/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&tinyInt1isBit=false
+    username: root
+    password: root
+  slave:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3311/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&tinyInt1isBit=false
+    username: root
+    password: root
+shardingRule:
+  tables:
+    user :
+      actual-data-nodes: master.user_$->{0..1}
+      table-strategy:
+        inline:
+          sharding-column:  id
+          algorithm-expression: user_$->{id % 2}
+          key-generator:
+            column: id
+            type: snowflake
+  defaultDataSourceName: master
+#  default-database-strategy:
+#    inline:
+#      sharding-column: id
+#      algorithm-expression: master$->{id % 2}
+props:
+  sql-show: true

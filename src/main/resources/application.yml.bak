@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: sharding-jdbc-demo
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+  mybatis:
+    mapper-locations: classpath*:mapper/*.xml
+    type-aliases-package: com.lww.sharding.entity
+  shardingsphere:
+    datasource:
+      names: master,slave
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3310/test?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: root
+      slave:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3311/test?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: root
+    sharding:
+      tables:
+        user :
+          actual-data-nodes: master.user_$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column:  id
+              algorithm-expression: user_$->{id % 2}
+              key-generator:
+                column: id
+                type: snowflake
+      database-strategy: none
+
+    props:
+      sql-show: true
+
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+logging:
+  level:
+    org.apache.shardingsphere: DEBUG
+    com.alibaba.druid: DEBUG
+# mysql ???
+#  datasource:
+#    url: jdbc:mysql://localhost:3310/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&tinyInt1isBit=false
+#    username: root
+#    password: root
+#    type: com.mysql.cj.jdbc.MysqlDataSource
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
