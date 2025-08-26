@@ -22,7 +22,7 @@ import java.util.Properties;
 public class OrderMyBatisConfig {
     
     @Bean("orderSqlSessionFactory")
-    public SqlSessionFactory courseSqlSessionFactory(
+    public SqlSessionFactory orderSqlSessionFactory(
             @Qualifier("orderDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource);
@@ -56,7 +56,7 @@ public class OrderMyBatisConfig {
     }
     
     @Bean("orderTransactionManager")
-    public PlatformTransactionManager courseTransactionManager(
+    public PlatformTransactionManager orderTransactionManager(
             @Qualifier("orderDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }

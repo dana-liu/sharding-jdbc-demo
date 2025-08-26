@@ -22,7 +22,7 @@ import java.util.Properties;
 public class UserMyBatisConfig {
     
     @Bean("userSqlSessionFactory")
-    public SqlSessionFactory courseSqlSessionFactory(
+    public SqlSessionFactory userSqlSessionFactory(
             @Qualifier("userShardingDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource);
@@ -53,9 +53,9 @@ public class UserMyBatisConfig {
 
         return factory.getObject();
     }
-    
+
     @Bean("userTransactionManager")
-    public PlatformTransactionManager courseTransactionManager(
+    public PlatformTransactionManager userTransactionManager(
             @Qualifier("userShardingDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }

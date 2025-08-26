@@ -7,6 +7,8 @@ import com.github.pagehelper.PageHelper;
 import com.lww.sharding.user.entity.User;
 import com.lww.sharding.user.mapper.UserMapper;
 import com.lww.sharding.user.service.UserService;
+import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
+import org.apache.shardingsphere.transaction.core.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+//    @ShardingTransactionType(value = TransactionType.BASE)
     public List<User> list2() {
         return userMapper.list2();
     }
