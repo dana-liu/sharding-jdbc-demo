@@ -1,10 +1,10 @@
-package com.lww.sharding.service;/**
+package com.lww.sharding.order.service;/**
  * @author wu
  * @date 2025/8/19
  */
 
-import com.lww.sharding.entity.Order;
-import com.lww.sharding.entity.User;
+
+import com.lww.sharding.order.entity.Order;
 
 import java.util.List;
 
@@ -17,4 +17,6 @@ public interface OrderService {
     void save(Order order);
 
     List<Order> list();
+
+    List<Order> page(int pageNum, int pageSize);
 }

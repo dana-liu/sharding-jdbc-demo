@@ -1,10 +1,10 @@
-package com.lww.sharding.controller;/**
+package com.lww.sharding.user.controller;/**
  * @author wu
  * @date 2025/8/19
  */
 
-import com.lww.sharding.entity.User;
-import com.lww.sharding.service.UserService;
+import com.lww.sharding.user.entity.User;
+import com.lww.sharding.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,12 +41,22 @@ public class UserController {
         return userService.list();
     }
 
+    @GetMapping("/page")
+    public List<User> page(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", required = false,defaultValue = "10") int pageSize) {
+        return userService.page(pageNum,pageSize);
+    }
+
     @GetMapping("/save")
     public void save() {
         User user = new User();
         user.setName("张三");
         user.setId(1L);
         userService.save(user);
+    }
+
+    @GetMapping("/list2")
+    public List<User> list2() {
+        return userService.list2();
     }
 
 }

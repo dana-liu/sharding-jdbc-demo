@@ -1,4 +1,4 @@
-package com.lww.sharding.config;
+package com.lww.sharding.user.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;

@@ -1,10 +1,9 @@
-package com.lww.sharding.mapper;/**
+package com.lww.sharding.order.mapper;/**
  * @author wu
  * @date 2025/8/19
  */
 
-import com.lww.sharding.entity.Order;
-import com.lww.sharding.entity.User;
+import com.lww.sharding.order.entity.Order;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -20,9 +19,12 @@ import java.util.List;
 public interface OrderMapper {
 
 
-    @Select("select id,order_number as orderNumber from `order`")
+    @Select("select * from t_order")
     List<Order> list();
 
-    @Insert("insert into `order`(order_number) values(#{orderNumber})")
+    @Insert("insert into `t_order`(number,name) values(#{number},#{name})")
     void save(Order order);
+
+    @Select("select * from t_order")
+    List<Order> page();
 }

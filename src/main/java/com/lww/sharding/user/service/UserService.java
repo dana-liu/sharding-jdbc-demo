@@ -1,9 +1,9 @@
-package com.lww.sharding.service;/**
+package com.lww.sharding.user.service;/**
  * @author wu
  * @date 2025/8/19
  */
 
-import com.lww.sharding.entity.User;
+import com.lww.sharding.user.entity.User;
 
 import java.util.List;
 
@@ -18,4 +18,8 @@ public interface UserService {
     List<User> list();
 
     void save(User user);
+
+    List<User> page(int pageNum, int pageSize);
+
+    List<User> list2();
 }

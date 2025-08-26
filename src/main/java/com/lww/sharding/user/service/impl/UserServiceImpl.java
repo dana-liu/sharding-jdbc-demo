@@ -1,14 +1,16 @@
-package com.lww.sharding.service.impl;/**
+package com.lww.sharding.user.service.impl;/**
  * @author wu
  * @date 2025/8/19
  */
 
-import com.lww.sharding.entity.User;
-import com.lww.sharding.mapper.UserMapper;
-import com.lww.sharding.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.lww.sharding.user.entity.User;
+import com.lww.sharding.user.mapper.UserMapper;
+import com.lww.sharding.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,5 +37,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userMapper.save(user);
+    }
+
+    @Override
+    public List<User> page(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> list = userMapper.list();
+        return list;
+    }
+
+    @Override
+    public List<User> list2() {
+        return userMapper.list2();
     }
 }

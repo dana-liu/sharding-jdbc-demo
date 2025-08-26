@@ -1,4 +1,4 @@
-package com.lww.sharding.entity;/**
+package com.lww.sharding.user.entity;/**
  * @author wu
  * @date 2025/8/19
  */

@@ -1,4 +1,4 @@
-package com.lww.sharding.sharding;
+package com.lww.sharding.user.sharding;
 
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;

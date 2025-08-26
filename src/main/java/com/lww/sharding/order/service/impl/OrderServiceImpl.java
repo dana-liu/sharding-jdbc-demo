@@ -1,14 +1,12 @@
-package com.lww.sharding.service.impl;/**
+package com.lww.sharding.order.service.impl;/**
  * @author wu
  * @date 2025/8/19
  */
 
-import com.lww.sharding.entity.Order;
-import com.lww.sharding.entity.User;
-import com.lww.sharding.mapper.OrderMapper;
-import com.lww.sharding.mapper.UserMapper;
-import com.lww.sharding.service.OrderService;
-import com.lww.sharding.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.lww.sharding.order.entity.Order;
+import com.lww.sharding.order.mapper.OrderMapper;
+import com.lww.sharding.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +32,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> list() {
         return orderMapper.list();
+    }
+
+    @Override
+    public List<Order> page(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> page = orderMapper.page();
+        return page;
     }
 }
