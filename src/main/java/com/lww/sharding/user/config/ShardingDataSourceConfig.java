@@ -100,6 +100,8 @@ public class ShardingDataSourceConfig {
         properties.setProperty("sql.show", "true");
         // 简化SQL打印
 //        properties.setProperty("sql.simple", "true");
+        // 6. 启用 XA 事务
+//        properties.setProperty("xa-transaction-manager-type", "atomikos");
         // 5. 创建数据源
         return ShardingDataSourceFactory.createDataSource(
                 dataSourceMap,

@@ -65,6 +65,18 @@
             <artifactId>sharding-jdbc-core</artifactId>
             <version>4.1.1</version>
         </dependency>
+        <!-- Sharding-JDBC 事务支持 -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.shardingsphere</groupId>-->
+<!--            <artifactId>sharding-transaction-spring</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
+        <!-- 如果需要 XA 事务 -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.shardingsphere</groupId>-->
+<!--            <artifactId>sharding-transaction-xa-core</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
