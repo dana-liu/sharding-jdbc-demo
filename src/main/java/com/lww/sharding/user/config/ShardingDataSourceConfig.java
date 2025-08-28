@@ -109,8 +109,8 @@ public class ShardingDataSourceConfig {
                 new StandardShardingStrategyConfiguration("id", new MyPreciseTableShardingAlgorithm())
         );
 
-        // 分布式主键策略
-        userTableRule.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE","id"));
+        // 分布式主键策略  会根据指定算法类型 为分片主键生成值，注释掉就不会了，可以自己生成
+//        userTableRule.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE","id"));
 
         shardingRule.getTableRuleConfigs().add(userTableRule);
 

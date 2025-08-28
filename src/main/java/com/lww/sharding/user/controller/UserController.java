@@ -51,7 +51,7 @@ public class UserController {
     public void save() {
         User user = new User();
         user.setName("张三");
-        user.setId(1L);
+        user.setId(100L);
         userService.save(user);
     }
 

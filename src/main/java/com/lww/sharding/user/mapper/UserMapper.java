@@ -27,7 +27,7 @@ public interface UserMapper {
     @Select("select * from user order by id asc")
     List<User> list();
 
-    @Insert("insert into user(name) values(#{name})")
+    @Insert("insert into user(id,name) values(#{id},#{name})")
     void save(User user);
 
     @Select("select id,uname as name from t_user")
