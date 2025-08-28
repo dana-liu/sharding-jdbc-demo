@@ -5,6 +5,7 @@ package com.lww.sharding.user.service.impl;/**
 
 import com.github.pagehelper.PageHelper;
 import com.lww.sharding.user.entity.User;
+import com.lww.sharding.user.entity.UserOrder;
 import com.lww.sharding.user.mapper.UserMapper;
 import com.lww.sharding.user.service.UserService;
 import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
@@ -52,5 +53,15 @@ public class UserServiceImpl implements UserService {
 //    @ShardingTransactionType(value = TransactionType.BASE)
     public List<User> list2() {
         return userMapper.list2();
+    }
+
+    @Override
+    public List<UserOrder> join() {
+        return userMapper.join();
+    }
+
+    @Override
+    public List<UserOrder> joinUser() {
+        return userMapper.joinUser();
     }
 }

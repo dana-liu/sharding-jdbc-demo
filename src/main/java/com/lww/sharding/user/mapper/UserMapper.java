@@ -5,6 +5,7 @@ package com.lww.sharding.user.mapper;/**
 
 import com.lww.sharding.user.annotation.MasterRoute;
 import com.lww.sharding.user.entity.User;
+import com.lww.sharding.user.entity.UserOrder;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -32,4 +33,8 @@ public interface UserMapper {
     @Select("select id,uname as name from t_user")
     List<User> list2();
 
+    @Select("SELECT u.id,u.name,o.order_number from user u left join `order` o on u.id = o.user_number")
+    List<UserOrder> join();
+    @Select("SELECT u.id,u.name,o.order_number from user u left join `order` o on u.id = o.user_number where u.id in ( 1167892268229591040,1167902547399147520,1167902581276540929)")
+    List<UserOrder> joinUser();
 }

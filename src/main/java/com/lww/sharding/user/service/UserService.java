@@ -4,6 +4,7 @@ package com.lww.sharding.user.service;/**
  */
 
 import com.lww.sharding.user.entity.User;
+import com.lww.sharding.user.entity.UserOrder;
 
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface UserService {
     List<User> page(int pageNum, int pageSize);
 
     List<User> list2();
+
+    List<UserOrder> join();
+
+    List<UserOrder> joinUser();
 }

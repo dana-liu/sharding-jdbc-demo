@@ -4,6 +4,7 @@ package com.lww.sharding.user.controller;/**
  */
 
 import com.lww.sharding.user.entity.User;
+import com.lww.sharding.user.entity.UserOrder;
 import com.lww.sharding.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,6 +58,16 @@ public class UserController {
     @GetMapping("/list2")
     public List<User> list2() {
         return userService.list2();
+    }
+
+    @GetMapping("/join")
+    public List<UserOrder> join() {
+        return userService.join();
+    }
+
+    @GetMapping("/joinUser")
+    public List<UserOrder> joinUser() {
+        return userService.joinUser();
     }
 
 }
