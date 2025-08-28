@@ -4,6 +4,7 @@ package com.lww.sharding.order.service.impl;/**
  */
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lww.sharding.order.entity.Order;
 import com.lww.sharding.order.mapper.OrderMapper;
 import com.lww.sharding.order.mapper.xa.OrderXaMapper;
@@ -36,9 +37,9 @@ public class OrderXaServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> page(int pageNum, int pageSize) {
+    public PageInfo<Order> page(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> page = orderMapper.page();
-        return page;
+        return new PageInfo(page);
     }
 }

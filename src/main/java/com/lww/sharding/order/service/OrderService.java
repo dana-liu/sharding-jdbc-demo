@@ -4,6 +4,7 @@ package com.lww.sharding.order.service;/**
  */
 
 
+import com.github.pagehelper.PageInfo;
 import com.lww.sharding.order.entity.Order;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface OrderService {
 
     List<Order> list();
 
-    List<Order> page(int pageNum, int pageSize);
+    PageInfo<Order> page(int pageNum, int pageSize);
 }

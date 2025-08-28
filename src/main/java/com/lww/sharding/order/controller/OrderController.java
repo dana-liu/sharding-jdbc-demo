@@ -4,6 +4,7 @@ package com.lww.sharding.order.controller;/**
  */
 
 import cn.hutool.core.util.RandomUtil;
+import com.github.pagehelper.PageInfo;
 import com.lww.sharding.order.entity.Order;
 import com.lww.sharding.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,17 @@ public class OrderController {
     @Qualifier("orderService")
     private OrderService orderService;
 
+    @Autowired
+    @Qualifier("orderXaService")
+    private OrderService orderXaService;
+
     @GetMapping("/list")
     public List<Order> list() {
         return orderService.list();
     }
 
     @GetMapping("/page")
-    public List<Order> page(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", required = false,defaultValue = "10") int pageSize) {
+    public PageInfo<Order> page(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", required = false,defaultValue = "10") int pageSize) {
         return orderService.page(pageNum,pageSize);
     }
 
@@ -45,6 +50,16 @@ public class OrderController {
         order.setName("订单-"+RandomUtil.randomInt());
         orderService.save(order);
         return "保存成功";
+    }
+
+    @GetMapping("/xalist")
+    public List<Order> xalist() {
+        return orderXaService.list();
+    }
+
+    @GetMapping("/xapage")
+    public PageInfo<Order> xapage(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", required = false,defaultValue = "10") int pageSize) {
+        return orderXaService.page(pageNum,pageSize);
     }
 
 }
