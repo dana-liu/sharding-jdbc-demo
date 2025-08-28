@@ -6,6 +6,7 @@ package com.lww.sharding.logistics.controller;/**
 import com.lww.sharding.logistics.entity.LogisticsCompany;
 import com.lww.sharding.logistics.service.LogisticsCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @RequestMapping("/logistics")
 public class LogisticsCompanyController {
     @Autowired
+    @Qualifier("logisticsCompanyService")
     private LogisticsCompanyService logisticsCompanyService;
 
     @RequestMapping("/list")

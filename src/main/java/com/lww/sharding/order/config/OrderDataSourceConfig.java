@@ -37,7 +37,7 @@ public class OrderDataSourceConfig {
     private Environment env;
 
     // 主数据源
-    @Bean
+    @Bean(name = "orderDataSource")
     public DataSource orderDataSource() {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(env.getProperty("spring.datasource.order.url"));

@@ -5,9 +5,11 @@ package com.lww.sharding.logistics.service.impl;/**
 
 import com.lww.sharding.logistics.entity.LogisticsCompany;
 import com.lww.sharding.logistics.mapper.LogisticsCompanyMapper;
+import com.lww.sharding.logistics.mapper.xa.LogisticsCompanyXaMapper;
 import com.lww.sharding.logistics.service.LogisticsCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,20 +18,20 @@ import java.util.List;
  * @CreateTime: 2025-08-27  17:59
  * @Version: 1.0
  */
-@Service(value = "logisticsCompanyService")
-public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
+@Service(value = "logisticsCompanyXaService")
+public class LogisticsCompanyXaServiceImpl implements LogisticsCompanyService {
 
     @Autowired
-    private LogisticsCompanyMapper logisticsCompanyMapper;
+    private LogisticsCompanyXaMapper logisticsCompanyXaMapper;
 
 
     public List<LogisticsCompany> list() {
         LogisticsCompany logisticsCompany = new LogisticsCompany();
-        return logisticsCompanyMapper.list();
+        return logisticsCompanyXaMapper.list();
     }
 
     @Override
     public void save(LogisticsCompany logisticsCompany) {
-        logisticsCompanyMapper.save(logisticsCompany);
+        logisticsCompanyXaMapper.save(logisticsCompany);
     }
 }

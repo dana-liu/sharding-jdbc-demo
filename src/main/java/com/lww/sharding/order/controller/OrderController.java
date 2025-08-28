@@ -7,6 +7,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.lww.sharding.order.entity.Order;
 import com.lww.sharding.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
+    @Qualifier("orderService")
     private OrderService orderService;
 
     @GetMapping("/list")

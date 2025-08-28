@@ -6,11 +6,12 @@ package com.lww.sharding.order.service.impl;/**
 import com.github.pagehelper.PageHelper;
 import com.lww.sharding.order.entity.Order;
 import com.lww.sharding.order.mapper.OrderMapper;
+import com.lww.sharding.order.mapper.xa.OrderXaMapper;
 import com.lww.sharding.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,11 +19,11 @@ import java.util.List;
  * @CreateTime: 2025-08-19  11:28
  * @Version: 1.0
  */
-@Service("orderService")
-public class OrderServiceImpl implements OrderService {
+@Service("orderXaService")
+public class OrderXaServiceImpl implements OrderService {
 
     @Autowired
-    private OrderMapper orderMapper;
+    private OrderXaMapper orderMapper;
 
     @Override
     public void save(Order order) {
