@@ -4,6 +4,7 @@ package com.lww.sharding.user.config;/**
  */
 
 import com.lww.sharding.user.sharding.MyPreciseTableShardingAlgorithm;
+import com.mysql.cj.jdbc.MysqlXADataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.shardingsphere.api.config.masterslave.LoadBalanceStrategyConfiguration;
 import org.apache.shardingsphere.api.config.masterslave.MasterSlaveRuleConfiguration;
@@ -14,6 +15,7 @@ import org.apache.shardingsphere.api.config.sharding.strategy.StandardShardingSt
 import org.apache.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -39,30 +41,49 @@ public class ShardingDataSourceConfig {
     // 主数据源
     @Bean
     public DataSource masterDataSource() {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(env.getProperty("spring.datasource.user.master.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.user.master.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.user.master.password"));
-        dataSource.setDriverClassName(env.getProperty("spring.datasource.user.master.driver-class-name"));
-        dataSource.setMaximumPoolSize(env.getProperty("spring.datasource.user.master.maximum-pool-size", Integer.class, 15));
+//        HikariDataSource dataSource = new HikariDataSource();
+//        dataSource.setJdbcUrl(env.getProperty("spring.datasource.user.master.url"));
+//        dataSource.setUsername(env.getProperty("spring.datasource.user.master.username"));
+//        dataSource.setPassword(env.getProperty("spring.datasource.user.master.password"));
+//        dataSource.setDriverClassName(env.getProperty("spring.datasource.user.master.driver-class-name"));
+//        dataSource.setMaximumPoolSize(env.getProperty("spring.datasource.user.master.maximum-pool-size", Integer.class, 15));
+
+        MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
+        mysqlXADataSource.setUrl(env.getProperty("spring.datasource.user.master.url"));
+        mysqlXADataSource.setUser(env.getProperty("spring.datasource.user.master.username"));
+        mysqlXADataSource.setPassword(env.getProperty("spring.datasource.user.master.password"));
+
+        AtomikosDataSourceBean dataSource = new AtomikosDataSourceBean();
+        dataSource.setXaDataSource(mysqlXADataSource);
+        dataSource.setUniqueResourceName("masterDataSource");
+
         return dataSource;
     }
 
     // 从数据源1
     @Bean
     public DataSource slaveDataSource0() {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(env.getProperty("spring.datasource.user.slave0.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.user.slave0.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.user.slave0.password"));
-        dataSource.setDriverClassName(env.getProperty("spring.datasource.user.slave0.driver-class-name"));
-        dataSource.setMaximumPoolSize(env.getProperty("spring.datasource.user.slave0.maximum-pool-size", Integer.class, 15));
+//        HikariDataSource dataSource = new HikariDataSource();
+//        dataSource.setJdbcUrl(env.getProperty("spring.datasource.user.slave0.url"));
+//        dataSource.setUsername(env.getProperty("spring.datasource.user.slave0.username"));
+//        dataSource.setPassword(env.getProperty("spring.datasource.user.slave0.password"));
+//        dataSource.setDriverClassName(env.getProperty("spring.datasource.user.slave0.driver-class-name"));
+//        dataSource.setMaximumPoolSize(env.getProperty("spring.datasource.user.slave0.maximum-pool-size", Integer.class, 15));
+
+
+        MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
+        mysqlXADataSource.setUrl(env.getProperty("spring.datasource.user.slave0.url"));
+        mysqlXADataSource.setUser(env.getProperty("spring.datasource.user.slave0.username"));
+        mysqlXADataSource.setPassword(env.getProperty("spring.datasource.user.slave0.password"));
+        AtomikosDataSourceBean dataSource = new AtomikosDataSourceBean();
+        dataSource.setXaDataSource(mysqlXADataSource);
+        dataSource.setUniqueResourceName("slaveDataSource0");
         return dataSource;
     }
 
 
     @Bean("userShardingDataSource")
-    public DataSource courseShardingDataSource(
+    public DataSource userShardingDataSource(
             @Qualifier("masterDataSource") DataSource masterDataSource,
             @Qualifier("slaveDataSource0") DataSource slaveDataSource0) throws SQLException {
 
@@ -101,7 +122,7 @@ public class ShardingDataSourceConfig {
         // 简化SQL打印
 //        properties.setProperty("sql.simple", "true");
         // 6. 启用 XA 事务
-//        properties.setProperty("xa-transaction-manager-type", "atomikos");
+        properties.setProperty("xa-transaction-manager-type", "Atomikos");
         // 5. 创建数据源
         return ShardingDataSourceFactory.createDataSource(
                 dataSourceMap,
