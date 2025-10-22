@@ -5,7 +5,6 @@ package com.lww.sharding.user.config;/**
 
 import com.lww.sharding.user.sharding.MyPreciseTableShardingAlgorithm;
 import com.mysql.cj.jdbc.MysqlXADataSource;
-import com.zaxxer.hikari.HikariDataSource;
 import org.apache.shardingsphere.api.config.masterslave.LoadBalanceStrategyConfiguration;
 import org.apache.shardingsphere.api.config.masterslave.MasterSlaveRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.KeyGeneratorConfiguration;
@@ -110,7 +109,7 @@ public class ShardingDataSourceConfig {
         );
 
         // 分布式主键策略  会根据指定算法类型 为分片主键生成值，注释掉就不会了，可以自己生成
-//        userTableRule.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE","id"));
+        userTableRule.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE","id"));
 
         shardingRule.getTableRuleConfigs().add(userTableRule);
 
