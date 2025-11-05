@@ -4,6 +4,7 @@ package com.lww.sharding.user.controller;/**
  */
 
 import com.lww.sharding.user.dto.StudentBoughtClassDto;
+import com.lww.sharding.user.entity.StudentBoughtClass;
 import com.lww.sharding.user.entity.User;
 import com.lww.sharding.user.entity.UserOrder;
 import com.lww.sharding.user.service.StudentBoughtService;
@@ -29,8 +30,23 @@ public class StudentBoughtClassController {
     private StudentBoughtService studentBoughtService;
 
     @GetMapping("/list")
-    public List<StudentBoughtClassDto> list() {
+    public List<StudentBoughtClass> list() {
         return studentBoughtService.list();
+    }
+
+    @GetMapping("/getByUserNumber")
+    public List<StudentBoughtClass> list(@RequestParam("number") long  userNumber) {
+        return studentBoughtService.getByUserNumber(userNumber);
+    }
+
+    @GetMapping("/flush")
+    public void flush(@RequestParam("minId") long minId, @RequestParam("maxId") long maxId) {
+        studentBoughtService.flush(minId,maxId);
+    }
+
+    @GetMapping("/getLast")
+    public StudentBoughtClass getLast() {
+        return studentBoughtService.getLast();
     }
 
 

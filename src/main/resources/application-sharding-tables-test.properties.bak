@@ -1,0 +1,16 @@
+spring.shardingsphere.datasource.names=ds
+
+spring.shardingsphere.datasource.ds.type=com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.ds.driver-class-name=com.mysql.jdbc.Driver
+spring.shardingsphere.datasource.ds.jdbc-url=jdbc:mysql://192.168.100.92:4005/bukexuetang?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+spring.shardingsphere.datasource.ds.username=wenwu_test
+spring.shardingsphere.datasource.ds.password=wenwu^_TEST1031
+
+spring.shardingsphere.sharding.tables.user.actual-data-nodes=ds.student_bought_class_0$->{0..9}
+spring.shardingsphere.sharding.tables.user.table-strategy.inline.sharding-column=user_number
+spring.shardingsphere.sharding.tables.user.table-strategy.inline.algorithm-expression=student_bought_class_0->{user_number % 10}
+spring.shardingsphere.sharding.tables.user.key-generator.column=user_number
+spring.shardingsphere.sharding.tables.user.key-generator.type=SNOWFLAKE
+spring.shardingsphere.sharding.tables.user.key-generator.props.worker.id=123
+spring.shardingsphere.props.sql.show=true
+

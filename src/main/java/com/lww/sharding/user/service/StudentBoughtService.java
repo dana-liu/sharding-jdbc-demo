@@ -4,6 +4,7 @@ package com.lww.sharding.user.service;/**
  */
 
 import com.lww.sharding.user.dto.StudentBoughtClassDto;
+import com.lww.sharding.user.entity.StudentBoughtClass;
 import com.lww.sharding.user.entity.User;
 import com.lww.sharding.user.entity.UserOrder;
 
@@ -16,6 +17,13 @@ import java.util.List;
  */
 public interface StudentBoughtService {
 
-    List<StudentBoughtClassDto> list();
+    List<StudentBoughtClass> list();
 
+    void flush(long minId, long maxId);
+
+    StudentBoughtClass getLast();
+
+    List<StudentBoughtClass> getByUserNumber(long userNumber);
+
+    void save(StudentBoughtClass studentBoughtClass);
 }

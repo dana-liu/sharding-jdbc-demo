@@ -6,4 +6,4 @@
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>4.1.1</version>
         </dependency>
-2. 使用[application-sharding-master-slave-tables.properties](src/main/resources/application-sharding-master-slave-tables.properties)配置文件
+2. 使用[application-sharding-master-slave-tables.properties](src/main/resources/application-sharding-master-slave-tables-test.properties.bak)配置文件

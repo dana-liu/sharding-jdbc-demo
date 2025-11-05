@@ -67,7 +67,5 @@ public class StudentBoughtClassDto {
      */
     private long orderNumber;
 
-    private long createTime;
-
     private byte status;
 }

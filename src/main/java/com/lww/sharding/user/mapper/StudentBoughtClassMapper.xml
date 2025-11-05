@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lww.sharding.user.mapper.StudentBoughtClassMapper">
+    <insert id="insertBatch">
+        insert into student_bought_class_0${suffix} (user_number, course_number, buy_class_number, class_number,
+        pre_mini_class_number, mini_class_number, status, type,
+        source, product_type, is_renewals, order_number, renewal_date,
+        create_time, update_time, wechat_name, isgift)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.userNumber}, #{item.courseNumber}, #{item.buyClassNumber}, #{item.classNumber},
+            #{item.preMiniClassNumber}, #{item.miniClassNumber}, #{item.status}, #{item.type},
+            #{item.source}, #{item.productType}, #{item.isRenewals}, #{item.orderNumber}, #{item.renewalDate},
+            #{item.createTime}, #{item.updateTime}, #{item.wechatName}, #{item.isgift}
+            )
+        </foreach>
+    </insert>
+
+    <select id="listById" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
+        select * from student_bought_class where id > #{minId} and id &lt;= #{maxId}
+    </select>
+    <select id="selectLast" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
+        select * from student_bought_class order by create_time desc limit 1
+    </select>
+    <select id="getByUserNumber" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
+        select * from student_bought_class where user_number = #{userNumber} limit 2
+    </select>
+</mapper>

@@ -103,6 +103,7 @@ public class ShardingDataSourceConfig {
         TableRuleConfiguration userTableRule = new TableRuleConfiguration(
                 "user", "ds.user_${0..1}"
         );
+
         // 分片策略
         userTableRule.setTableShardingStrategyConfig(
                 new StandardShardingStrategyConfiguration("id", new MyPreciseTableShardingAlgorithm())
@@ -112,6 +113,19 @@ public class ShardingDataSourceConfig {
         userTableRule.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE","id"));
 
         shardingRule.getTableRuleConfigs().add(userTableRule);
+
+
+        TableRuleConfiguration studentBoughtClassTableRule = new TableRuleConfiguration(
+                "student_bought_class", "ds.student_bought_class_${0..3}"
+        );
+        studentBoughtClassTableRule.setTableShardingStrategyConfig(
+                new StandardShardingStrategyConfiguration("user_number", new MyPreciseTableShardingAlgorithm())
+        );
+//        studentBoughtClassTableRule.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE","id"));
+
+        shardingRule.getTableRuleConfigs().add(studentBoughtClassTableRule);
+
+
 
         // 4. 添加读写分离规则到分片规则
         shardingRule.getMasterSlaveRuleConfigs().add(masterSlaveRule);
