@@ -22,4 +22,6 @@ public interface StudentOldService {
     void save(StudentBoughtClass studentBoughtClass);
 
     List<StudentBoughtClass> getByUserNumber(long userNumber);
+
+    void flush(long minId, long maxId);
 }

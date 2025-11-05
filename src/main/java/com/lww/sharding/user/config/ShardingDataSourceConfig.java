@@ -116,7 +116,7 @@ public class ShardingDataSourceConfig {
 
 
         TableRuleConfiguration studentBoughtClassTableRule = new TableRuleConfiguration(
-                "student_bought_class", "ds.student_bought_class_${0..3}"
+                "student_bought_class", "ds.student_bought_class_${0..9}"
         );
         studentBoughtClassTableRule.setTableShardingStrategyConfig(
                 new StandardShardingStrategyConfiguration("user_number", new MyPreciseTableShardingAlgorithm())

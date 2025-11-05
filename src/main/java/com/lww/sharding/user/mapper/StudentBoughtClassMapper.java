@@ -43,8 +43,12 @@ public interface StudentBoughtClassMapper {
 
     StudentBoughtClass selectLast();
 
-    List<StudentBoughtClass> getByUserNumber(@Param("userNumber")long userNumber);
+    List<StudentBoughtClass> getByUserNumber(@Param("userNumber")List<Long> userNumber);
 
     @Insert("insert into student_bought_class(user_number) values(#{req.userNumber})")
     int save(@Param("req") StudentBoughtClass studentBoughtClass);
+
+    List<StudentBoughtClass> join(@Param("userNumber") Long userNumber);
+
+    List<StudentBoughtClass> joinList(@Param("userNumber")List<Long> userNumber);
 }

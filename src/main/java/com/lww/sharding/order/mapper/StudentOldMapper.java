@@ -29,4 +29,8 @@ public interface StudentOldMapper {
 
     @Select("select * from student_bought_class where user_number = #{userNumber}")
     List<StudentBoughtClass> queryByUserNumber(long userNumber);
+
+    List<StudentBoughtClass> listById(@Param("minId") long minId, @Param("maxId") long maxId);
+
+    void insertBatch(@Param("list")List list, @Param("suffix")int suffix);
 }

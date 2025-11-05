@@ -35,7 +35,7 @@ public class StudentBoughtClassController {
     }
 
     @GetMapping("/getByUserNumber")
-    public List<StudentBoughtClass> list(@RequestParam("number") long  userNumber) {
+    public List<StudentBoughtClass> list(@RequestParam("number") List<Long>  userNumber) {
         return studentBoughtService.getByUserNumber(userNumber);
     }
 
@@ -49,5 +49,13 @@ public class StudentBoughtClassController {
         return studentBoughtService.getLast();
     }
 
+    @GetMapping("/join")
+    public List<StudentBoughtClass> join(@RequestParam(value = "userNumber", required = false, defaultValue = "") Long userNumber) {
+        return studentBoughtService.join(userNumber);
+    }
 
+    @GetMapping("/joinList")
+    public List<StudentBoughtClass> joinList(@RequestParam(value = "userNumber", required = false, defaultValue = "") List<Long> userNumber) {
+        return studentBoughtService.joinList(userNumber);
+    }
 }

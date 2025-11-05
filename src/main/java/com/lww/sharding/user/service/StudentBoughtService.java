@@ -23,7 +23,11 @@ public interface StudentBoughtService {
 
     StudentBoughtClass getLast();
 
-    List<StudentBoughtClass> getByUserNumber(long userNumber);
+    List<StudentBoughtClass> getByUserNumber(List<Long>  userNumber);
 
     void save(StudentBoughtClass studentBoughtClass);
+
+    List<StudentBoughtClass> join(Long userNumber);
+
+    List<StudentBoughtClass> joinList(List<Long> userNumber);
 }

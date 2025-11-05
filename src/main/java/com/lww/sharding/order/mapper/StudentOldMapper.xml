@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lww.sharding.user.mapper.StudentBoughtClassMapper">
+<mapper namespace="com.lww.sharding.order.mapper.StudentOldMapper">
     <insert id="insertBatch">
         insert into student_bought_class_0${suffix} (user_number, course_number, buy_class_number, class_number,
         pre_mini_class_number, mini_class_number, status, type,
@@ -24,32 +24,6 @@
         select * from student_bought_class order by create_time desc limit 1
     </select>
     <select id="getByUserNumber" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
-        select * from student_bought_class where
-         user_number in
-        <foreach collection="userNumber" item="item" separator="," open="(" close=")">
-            #{item}
-        </foreach>
-        limit 2
-    </select>
-    <select id="join" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
-        select * from student_bought_class sbc
-        left join user_prod up on  sbc.user_number = up.number
-        <where>
-            <if test="userNumber != null and userNumber > 0">
-                and sbc.user_number = #{userNumber}
-            </if>
-        </where>
-    </select>
-    <select id="joinList" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
-        select * from student_bought_class sbc
-        left join user_prod up on  sbc.user_number = up.number
-        <where>
-            <if test="userNumber != null and userNumber.size() > 0">
-                and sbc.user_number in
-                <foreach collection="userNumber" item="item" separator="," open="(" close=")">
-                    #{item}
-                </foreach>
-            </if>
-        </where>
+        select * from student_bought_class where user_number = #{userNumber} limit 2
     </select>
 </mapper>

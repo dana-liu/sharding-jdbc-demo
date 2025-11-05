@@ -130,12 +130,25 @@ public class StudentBoughtClassServiceImpl implements StudentBoughtService {
     }
 
     @Override
-    public List<StudentBoughtClass> getByUserNumber(long userNumber) {
+    public List<StudentBoughtClass> getByUserNumber(List<Long>  userNumber) {
+        if (userNumber.isEmpty()){
+            return Collections.emptyList();
+        }
         return studentBoughtClassMapper.getByUserNumber(userNumber);
     }
 
     @Override
     public void save(StudentBoughtClass studentBoughtClass) {
         studentBoughtClassMapper.save(studentBoughtClass);
+    }
+
+    @Override
+    public List<StudentBoughtClass> join(Long userNumber) {
+        return studentBoughtClassMapper.join(userNumber);
+    }
+
+    @Override
+    public List<StudentBoughtClass> joinList(List<Long> userNumber) {
+        return studentBoughtClassMapper.joinList(userNumber);
     }
 }
