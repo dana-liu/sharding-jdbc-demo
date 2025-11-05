@@ -35,4 +35,9 @@ public class StudentOldServiceImpl implements StudentOldService {
     public void save(StudentBoughtClass studentBoughtClass) {
         studentOldMapper.save(studentBoughtClass);
     }
+
+    @Override
+    public List<StudentBoughtClass> getByUserNumber(long userNumber) {
+        return studentOldMapper.queryByUserNumber(userNumber);
+    }
 }

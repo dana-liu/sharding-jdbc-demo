@@ -26,4 +26,7 @@ public interface StudentOldMapper {
 
     @Insert("insert into student_bought_class(user_number) values(#{req.userNumber})")
     int save(@Param("req") StudentBoughtClass studentBoughtClass);
+
+    @Select("select * from student_bought_class where user_number = #{userNumber}")
+    List<StudentBoughtClass> queryByUserNumber(long userNumber);
 }

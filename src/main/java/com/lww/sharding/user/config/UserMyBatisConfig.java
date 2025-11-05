@@ -1,6 +1,7 @@
 package com.lww.sharding.user.config;
 
 import com.github.pagehelper.PageInterceptor;
+import com.lww.sharding.interceptor.SlowSqlInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -44,7 +45,7 @@ public class UserMyBatisConfig {
         properties.setProperty("params", "count=countSql");
 
         pageInterceptor.setProperties(properties);
-        factory.setPlugins(new Interceptor[]{pageInterceptor});
+        factory.setPlugins(new Interceptor[]{pageInterceptor,new SlowSqlInterceptor()});
 
 
         // 配置驼峰命名

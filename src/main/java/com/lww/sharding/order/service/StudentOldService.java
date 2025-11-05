@@ -20,4 +20,6 @@ public interface StudentOldService {
     List<StudentBoughtClass> list();
 
     void save(StudentBoughtClass studentBoughtClass);
+
+    List<StudentBoughtClass> getByUserNumber(long userNumber);
 }
