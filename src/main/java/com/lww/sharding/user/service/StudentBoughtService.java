@@ -30,4 +30,6 @@ public interface StudentBoughtService {
     List<StudentBoughtClass> join(Long userNumber);
 
     List<StudentBoughtClass> joinList(List<Long> userNumber);
+
+    List<StudentBoughtClass> execSql(String sql);
 }

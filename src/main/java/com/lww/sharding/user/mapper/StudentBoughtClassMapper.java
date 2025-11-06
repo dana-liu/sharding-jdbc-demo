@@ -51,4 +51,6 @@ public interface StudentBoughtClassMapper {
     List<StudentBoughtClass> join(@Param("userNumber") Long userNumber);
 
     List<StudentBoughtClass> joinList(@Param("userNumber")List<Long> userNumber);
+
+    List<StudentBoughtClass> execSql(@Param("sql")String sql);
 }

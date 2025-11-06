@@ -4,11 +4,14 @@ package com.lww.sharding.order.controller;/**
  */
 
 import cn.hutool.core.util.RandomUtil;
+import com.lww.sharding.order.dto.ExecSqlDto;
 import com.lww.sharding.order.service.StudentOldService;
 import com.lww.sharding.user.entity.StudentBoughtClass;
 import com.lww.sharding.user.service.StudentBoughtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +55,12 @@ public class StudentOldController {
     @GetMapping("/flush")
     public void flush(@RequestParam("minId") long minId, @RequestParam("maxId") long maxId) {
         studentOldService.flush(minId,maxId);
+    }
+
+
+    @PostMapping("/execSql")
+    public List<StudentBoughtClass> execSql(@RequestBody ExecSqlDto req) {
+        return studentOldService.execSql(req.getSql());
     }
 
 }

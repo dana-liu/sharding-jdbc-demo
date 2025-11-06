@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lww.sharding.user.mapper.StudentBoughtClassMapper">
     <insert id="insertBatch">
-        insert into student_bought_class_0${suffix} (user_number, course_number, buy_class_number, class_number,
+        insert into student_bought_class_${suffix} (user_number, course_number, buy_class_number, class_number,
         pre_mini_class_number, mini_class_number, status, type,
         source, product_type, is_renewals, order_number, renewal_date,
         create_time, update_time, wechat_name, isgift)
@@ -51,5 +51,8 @@
                 </foreach>
             </if>
         </where>
+    </select>
+    <select id="execSql" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
+        ${sql}
     </select>
 </mapper>

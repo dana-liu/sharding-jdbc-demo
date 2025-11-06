@@ -41,7 +41,7 @@ public class StudentBoughtClassServiceImpl implements StudentBoughtService {
     public void flush(long minId, long maxId) {
         while(true){
             List<StudentBoughtClass> list = studentBoughtClassMapper.listById(minId,maxId);
-            if (minId > 219724415){
+            if (minId > 245914622){
                 break;
             }
             List list0 = new ArrayList();
@@ -150,5 +150,10 @@ public class StudentBoughtClassServiceImpl implements StudentBoughtService {
     @Override
     public List<StudentBoughtClass> joinList(List<Long> userNumber) {
         return studentBoughtClassMapper.joinList(userNumber);
+    }
+
+    @Override
+    public List<StudentBoughtClass> execSql(String sql) {
+        return studentBoughtClassMapper.execSql(sql);
     }
 }

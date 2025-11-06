@@ -21,7 +21,7 @@ import java.util.List;
 public interface StudentOldMapper {
 
 
-    @Select("select * from student_bought_class")
+    @Select("select * from student_bought_class limit 10")
     List<StudentBoughtClass> list();
 
     @Insert("insert into student_bought_class(user_number) values(#{req.userNumber})")
@@ -33,4 +33,6 @@ public interface StudentOldMapper {
     List<StudentBoughtClass> listById(@Param("minId") long minId, @Param("maxId") long maxId);
 
     void insertBatch(@Param("list")List list, @Param("suffix")int suffix);
+
+    List<StudentBoughtClass> execSql(@Param("sql")String sql);
 }

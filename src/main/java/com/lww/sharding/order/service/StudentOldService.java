@@ -24,4 +24,6 @@ public interface StudentOldService {
     List<StudentBoughtClass> getByUserNumber(long userNumber);
 
     void flush(long minId, long maxId);
+
+    List<StudentBoughtClass> execSql(String sql);
 }
