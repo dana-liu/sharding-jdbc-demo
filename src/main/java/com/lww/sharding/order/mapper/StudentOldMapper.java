@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: liuwenwu
@@ -34,5 +35,5 @@ public interface StudentOldMapper {
 
     void insertBatch(@Param("list")List list, @Param("suffix")int suffix);
 
-    List<StudentBoughtClass> execSql(@Param("sql")String sql);
+    List<Map> execSql(@Param("sql")String sql);
 }

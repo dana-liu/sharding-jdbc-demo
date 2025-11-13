@@ -23,7 +23,7 @@ public interface StudentBoughtService {
 
     StudentBoughtClass getLast();
 
-    List<StudentBoughtClass> getByUserNumber(List<Long>  userNumber);
+    List<StudentBoughtClass> getByUserNumber(Long  userNumber);
 
     void save(StudentBoughtClass studentBoughtClass);
 
@@ -31,5 +31,5 @@ public interface StudentBoughtService {
 
     List<StudentBoughtClass> joinList(List<Long> userNumber);
 
-    List<StudentBoughtClass> execSql(String sql);
+    void execSql(String sql);
 }

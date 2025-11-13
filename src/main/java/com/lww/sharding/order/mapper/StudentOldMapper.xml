@@ -26,7 +26,7 @@
     <select id="getByUserNumber" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
         select * from student_bought_class where user_number = #{userNumber} limit 2
     </select>
-    <select id="execSql" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
+    <select id="execSql" resultType="java.util.Map">
         ${sql}
     </select>
 </mapper>

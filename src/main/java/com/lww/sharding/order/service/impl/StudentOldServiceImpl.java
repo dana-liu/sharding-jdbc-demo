@@ -132,7 +132,7 @@ public class StudentOldServiceImpl implements StudentOldService {
     }
 
     @Override
-    public List<StudentBoughtClass> execSql(String sql) {
-        return studentOldMapper.execSql(sql);
+    public void execSql(String sql) {
+        studentOldMapper.execSql(sql);
     }
 }

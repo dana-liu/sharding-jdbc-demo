@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: liuwenwu
@@ -43,7 +44,7 @@ public interface StudentBoughtClassMapper {
 
     StudentBoughtClass selectLast();
 
-    List<StudentBoughtClass> getByUserNumber(@Param("userNumber")List<Long> userNumber);
+    List<StudentBoughtClass> getByUserNumber(@Param("userNumber")Long userNumber);
 
     @Insert("insert into student_bought_class(user_number) values(#{req.userNumber})")
     int save(@Param("req") StudentBoughtClass studentBoughtClass);
@@ -52,5 +53,5 @@ public interface StudentBoughtClassMapper {
 
     List<StudentBoughtClass> joinList(@Param("userNumber")List<Long> userNumber);
 
-    List<StudentBoughtClass> execSql(@Param("sql")String sql);
+    List<Map> execSql(@Param("sql")String sql);
 }

@@ -130,10 +130,8 @@ public class StudentBoughtClassServiceImpl implements StudentBoughtService {
     }
 
     @Override
-    public List<StudentBoughtClass> getByUserNumber(List<Long>  userNumber) {
-        if (userNumber.isEmpty()){
-            return Collections.emptyList();
-        }
+    public List<StudentBoughtClass> getByUserNumber(Long userNumber) {
+
         return studentBoughtClassMapper.getByUserNumber(userNumber);
     }
 
@@ -153,7 +151,7 @@ public class StudentBoughtClassServiceImpl implements StudentBoughtService {
     }
 
     @Override
-    public List<StudentBoughtClass> execSql(String sql) {
-        return studentBoughtClassMapper.execSql(sql);
+    public void execSql(String sql) {
+        studentBoughtClassMapper.execSql(sql);
     }
 }

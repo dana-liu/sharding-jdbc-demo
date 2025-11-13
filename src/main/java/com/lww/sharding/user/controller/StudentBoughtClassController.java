@@ -38,7 +38,7 @@ public class StudentBoughtClassController {
     }
 
     @GetMapping("/getByUserNumber")
-    public List<StudentBoughtClass> list(@RequestParam("number") List<Long>  userNumber) {
+    public List<StudentBoughtClass> list(@RequestParam("number") long  userNumber) {
         return studentBoughtService.getByUserNumber(userNumber);
     }
 
@@ -63,7 +63,7 @@ public class StudentBoughtClassController {
     }
 
     @PostMapping("/execSql")
-    public List<StudentBoughtClass> execSql(@RequestBody ExecSqlDto req) {
-        return studentBoughtService.execSql(req.getSql());
+    public void execSql(@RequestBody ExecSqlDto req) {
+        studentBoughtService.execSql(req.getSql());
     }
 }

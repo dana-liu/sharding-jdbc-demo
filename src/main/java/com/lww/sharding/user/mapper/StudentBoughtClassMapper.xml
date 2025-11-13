@@ -24,12 +24,7 @@
         select * from student_bought_class order by create_time desc limit 1
     </select>
     <select id="getByUserNumber" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
-        select * from student_bought_class where
-         user_number in
-        <foreach collection="userNumber" item="item" separator="," open="(" close=")">
-            #{item}
-        </foreach>
-        limit 2
+        select * from student_bought_class where user_number = #{userNumber}
     </select>
     <select id="join" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
         select * from student_bought_class sbc
@@ -52,7 +47,7 @@
             </if>
         </where>
     </select>
-    <select id="execSql" resultType="com.lww.sharding.user.entity.StudentBoughtClass">
+    <select id="execSql" resultType="java.util.Map">
         ${sql}
     </select>
 </mapper>

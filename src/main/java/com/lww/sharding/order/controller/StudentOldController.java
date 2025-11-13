@@ -59,8 +59,8 @@ public class StudentOldController {
 
 
     @PostMapping("/execSql")
-    public List<StudentBoughtClass> execSql(@RequestBody ExecSqlDto req) {
-        return studentOldService.execSql(req.getSql());
+    public void execSql(@RequestBody ExecSqlDto req) {
+        studentOldService.execSql(req.getSql());
     }
 
 }
